@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://chufax8nyqf6r"]
+
+[ext_resource type="PackedScene" uid="uid://bgn5xwugt1liv" path="res://space_station_glb/wall-banner.glb" id="1_e3gfo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qefh"]
+size = Vector3(1, 1, 0.299683)
+
+[node name="wall-banner2" instance=ExtResource("1_e3gfo")]
+
+[node name="RigidBody3D" type="StaticBody3D" parent="wall-banner" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall-banner/RigidBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499916, -1.54078e-05)
+shape = SubResource("BoxShape3D_1qefh")

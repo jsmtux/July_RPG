@@ -1,0 +1,182 @@
+[gd_scene load_steps=13 format=3 uid="uid://bi6wd6bjs6cs7"]
+
+[ext_resource type="PackedScene" uid="uid://cjdjsrocpe5ky" path="res://Models/wall_corner_banner.tscn" id="1_vgb3i"]
+[ext_resource type="PackedScene" uid="uid://chufax8nyqf6r" path="res://Models/wall_banner.tscn" id="2_ikc10"]
+[ext_resource type="PackedScene" uid="uid://bal67dhrdhmdf" path="res://Models/wall_door_banner.tscn" id="3_ucxah"]
+[ext_resource type="PackedScene" uid="uid://53au0y3q2q5o" path="res://Models/wall_door_edge.tscn" id="4_eip2b"]
+[ext_resource type="PackedScene" uid="uid://fv6kqiod8gcn" path="res://Models/wall_door_center.tscn" id="5_so8ua"]
+[ext_resource type="PackedScene" uid="uid://cp4bmagbujw3a" path="res://Models/floor.tscn" id="6_30f7d"]
+[ext_resource type="PackedScene" uid="uid://dsk0648xcfpsv" path="res://Models/floor-panel.tscn" id="7_8lvpu"]
+[ext_resource type="PackedScene" uid="uid://c6frdryolkant" path="res://Models/table_display.tscn" id="8_c7txo"]
+[ext_resource type="PackedScene" uid="uid://dn7nrueiq326p" path="res://Models/computer_screen.tscn" id="9_g8sog"]
+[ext_resource type="PackedScene" uid="uid://05bdwt6w3ow5" path="res://Models/computer_system.tscn" id="10_5qohu"]
+
+[sub_resource type="GDScript" id="GDScript_lrnm1"]
+script/source = "extends InteractionScript
+
+# Called when the PC requests interaction
+func _start_interaction(gui: DialogUi):
+	await gui.show_text(\"Alright!\")
+"
+
+[sub_resource type="GDScript" id="GDScript_xpvo7"]
+script/source = "extends InteractionScript
+
+@export var controlled_door : Node;
+
+# Called when the PC requests interaction
+func _start_interaction(gui: DialogUi):
+	await gui.show_text(\"Door controller terminal\")
+	var chosen = await gui.show_selection(\"What to do\", [\"open door\", \"close door\", \"nothing\"])
+	if chosen == 3:
+		return
+	gui.show_alert(\"Door is moving...\")
+	var door_should_be_opened = chosen == 1
+	if controlled_door.door_is_open != door_should_be_opened:
+		await controlled_door.animate_open(door_should_be_opened)
+		gui.hide_alert()
+		await gui.show_text(\"Door is now \" + (\"open\" if chosen == 1 else \"closed\"))
+	else:
+		await gui.show_text(\"Door already in expected state\")
+"
+
+[node name="computer_room" type="Node3D"]
+
+[node name="wall6x6" type="Node3D" parent="."]
+
+[node name="wall-corner-banner2" parent="wall6x6" instance=ExtResource("1_vgb3i")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.09372, 0.3, -1.10043)
+
+[node name="wall-corner-banner3" parent="wall6x6" instance=ExtResource("1_vgb3i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0925, 0.3, 2.98147)
+
+[node name="wall-banner2" parent="wall6x6" instance=ExtResource("2_ikc10")]
+transform = Transform3D(3.63277, 0, 0, 0, 1, 0, 0, 0, 1, -0.122505, 0.3, -1.35053)
+
+[node name="wall-corner-banner4" parent="wall6x6" instance=ExtResource("1_vgb3i")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.08348, 0.3, 2.98387)
+
+[node name="wall-corner-banner5" parent="wall6x6" instance=ExtResource("1_vgb3i")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.08633, 0.3, -1.09825)
+
+[node name="wall-banner4" parent="wall6x6" instance=ExtResource("2_ikc10")]
+transform = Transform3D(4.76381e-07, 0, -1, 0, 1, 0, 3.63277, 0, 1.31134e-07, 2.33443, 0.3, 0.872971)
+
+[node name="wall-door-edge2" parent="wall6x6" instance=ExtResource("4_eip2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19462, 0.3, 3.23154)
+
+[node name="wall-door-center" parent="wall6x6" instance=ExtResource("5_so8ua")]
+transform = Transform3D(1.38793, 0, 0, 0, 1, 0, 0, 0, 1, -0.00629783, 0.3, 3.23118)
+
+[node name="wall-door-edge3" parent="wall6x6" instance=ExtResource("4_eip2b")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.18585, 0.3, 3.23327)
+
+[node name="floor6x6" type="Node3D" parent="."]
+
+[node name="floor2" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0005, 0, -0.999857)
+
+[node name="floor3" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0005, 0, -0.999857)
+
+[node name="floor4" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0005, 0, 0.000144362)
+
+[node name="floor5" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0005, 0, 1.00014)
+
+[node name="floor6" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0005, 0, 1.00014)
+
+[node name="floor7" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000500143, 0, 1.00014)
+
+[node name="floor-panel2" parent="floor6x6" instance=ExtResource("7_8lvpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0005, 0, 0.00047338)
+
+[node name="floor9" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000500143, 0, 0.000144362)
+
+[node name="floor10" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000500143, 0, -0.999857)
+
+[node name="floor12" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0005, 0, 2.00014)
+
+[node name="floor13" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0005, 0, 3.00014)
+
+[node name="floor14" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0005, 0, 3.00014)
+
+[node name="floor15" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000500143, 0, 3.00014)
+
+[node name="floor-panel3" parent="floor6x6" instance=ExtResource("7_8lvpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0005, 0, 2.00047)
+
+[node name="floor16" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000500143, 0, 2.00014)
+
+[node name="floor8" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.999505, 0, -0.999857)
+
+[node name="floor17" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, -1.9995, 0, 1.00014)
+
+[node name="floor19" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9995, 0, -0.999857)
+
+[node name="floor20" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.999505, 0, 3.00014)
+
+[node name="floor21" parent="floor6x6" instance=ExtResource("6_30f7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9995, 0, 3.00014)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(0.761267, 0.16292, -0.627639, 0.208732, 0.854835, 0.475067, 0.613925, -0.492661, 0.61675, -1.9914, 1.78427, 2.94486)
+light_color = Color(0.737255, 1, 1, 1)
+light_energy = 3.667
+shadow_enabled = true
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.7602, -0.16292, 0.628931, -0.125863, 0.986639, 0.103449, -0.637381, -0.000516576, -0.770548, 1.93585, 1.52129, -1.31819)
+light_color = Color(0.737255, 1, 1, 1)
+light_energy = 3.667
+shadow_enabled = true
+
+[node name="table-display2" parent="." instance=ExtResource("8_c7txo")]
+transform = Transform3D(0.867036, 0, -0.498246, 0, 1, 0, 0.498246, 0, 0.867036, 0, 0.599199, 1.22804)
+
+[node name="computer-screen" parent="." instance=ExtResource("9_g8sog")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1.40715, 0.300873, -0.383257)
+
+[node name="computer-screen3" parent="." instance=ExtResource("9_g8sog")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.59285, 0.300873, -0.383257)
+
+[node name="wall-banner7" parent="." instance=ExtResource("2_ikc10")]
+transform = Transform3D(-2.09688e-07, 0, 1, 0, 1, 0, -0.95942, 0, -2.18557e-07, -2.34246, 0.3, 2.10232)
+
+[node name="wall-banner8" parent="." instance=ExtResource("2_ikc10")]
+transform = Transform3D(-2.90613e-07, 0, 1, 0, 1, 0, -1.32969, 0, -2.18557e-07, -2.34246, 0.3, -0.0403904)
+
+[node name="wall-door-banner3" parent="." instance=ExtResource("3_ucxah")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2.34219, 0.3, 1.12242)
+door_is_open = false
+
+[node name="interactors" type="Node3D" parent="."]
+
+[node name="computer-system" parent="interactors" node_paths=PackedStringArray("interaction_node") instance=ExtResource("10_5qohu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.181574, 0.300873, -0.765992)
+interaction_node = NodePath("InteractionScript")
+
+[node name="InteractionScript" type="Node" parent="interactors/computer-system"]
+script = SubResource("GDScript_lrnm1")
+
+[node name="computer-system2" parent="interactors" node_paths=PackedStringArray("interaction_node") instance=ExtResource("10_5qohu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.80225, 0.300873, 2.25863)
+interaction_node = NodePath("InteractionScript")
+
+[node name="InteractionScript" type="Node" parent="interactors/computer-system2" node_paths=PackedStringArray("controlled_door")]
+script = SubResource("GDScript_xpvo7")
+controlled_door = NodePath("../../../wall-door-banner3")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsk0648xcfpsv"]
+
+[ext_resource type="PackedScene" uid="uid://cvr3vf4i4blt0" path="res://space_station_glb/floor-panel.glb" id="2_nd6hf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_myb2o"]
+size = Vector3(1, 0.300308, 1)
+
+[node name="floor-panel2" instance=ExtResource("2_nd6hf")]
+
+[node name="RigidBody3D" type="StaticBody3D" parent="floor-panel" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor-panel/RigidBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.150719, 0)
+shape = SubResource("BoxShape3D_myb2o")

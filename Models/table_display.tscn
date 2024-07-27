@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6frdryolkant"]
+
+[ext_resource type="PackedScene" uid="uid://d3evv2q06qxa" path="res://space_station_glb/table-display.glb" id="1_lr65e"]
+
+[sub_resource type="Animation" id="Animation_ialip"]
+resource_name = "ship_hover"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ship:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 2, 0.307786),
+"update": 0,
+"values": [Vector3(1.44382e-15, 0.15, 0), Vector3(0, 0.2, 0), Vector3(1.44382e-15, 0.15, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qerfl"]
+_data = {
+"ship_hover": SubResource("Animation_ialip")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wv1bk"]
+size = Vector3(1.18384, 0.680908, 0.744873)
+
+[node name="table-display2" instance=ExtResource("1_lr65e")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="table-display/ship" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.131634, 0)
+light_color = Color(0.0823529, 0.705882, 1, 1)
+omni_range = 0.914923
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="table-display" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_qerfl")
+}
+autoplay = "ship_hover"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="table-display" index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table-display/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0032959, 0.0421143, -0.00500488)
+shape = SubResource("BoxShape3D_wv1bk")

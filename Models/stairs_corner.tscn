@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhc6my1qaw62x"]
+
+[ext_resource type="PackedScene" uid="uid://t7p8o1bwuxm7" path="res://space_station_glb/stairs-corner.glb" id="1_xw1wd"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_iql3x"]
+points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0, 0.166601, -0.5, 0.0749706, -0.5, 0.5, 0, -0.5, -0.5, 0.0749706, 0.166601, -0.166699, 0, 0.5, -0.250098, 0.149971, -0.5, 0.5, 0.3, -0.5, 0.5, 0.149971, 0.174922, 0.499902, 0, 0.5, -0.250098, 0.149971, -9.79006e-05, -0.166699, 0.0749706, 0.5, 0.249902, 0.3, -0.333399, 0.249902, 0.3, -0.5, 0.5, 0.3, -0.250098, 0.5, 0.224971, -9.79006e-05, 0.499902, 0.0749706, 0.5, 0.333301, 0.3, -0.250098)
+
+[node name="stairs-corner2" instance=ExtResource("1_xw1wd")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stairs-corner" index="0"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="stairs-corner/StaticBody3D" index="0"]
+transform = Transform3D(1.0476, 0, 0, 0, 1.24466, 0, 0, 0, 1.13786, -0.0255742, -0.0738433, 0.0712424)
+shape = SubResource("ConvexPolygonShape3D_iql3x")

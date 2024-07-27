@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl7f27navq05l"]
+
+[ext_resource type="PackedScene" uid="uid://cqu1dmtomx5py" path="res://space_station_glb/stairs-small-edges-handrail.glb" id="1_f67yv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7idi4"]
+size = Vector3(0.101929, 0.700439, 0.398376)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mts6r"]
+size = Vector3(0.786835, 0.0673828, 0.419464)
+
+[node name="stairs-small-edges-handrail" instance=ExtResource("1_f67yv")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stairs-small-edges-handrail" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stairs-small-edges-handrail/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.448975, 0.350464, 0.00186157)
+shape = SubResource("BoxShape3D_7idi4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="stairs-small-edges-handrail/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.449, 0.350464, 0.00186157)
+shape = SubResource("BoxShape3D_7idi4")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="stairs-small-edges-handrail/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.704671, -0.709534, 0, 0.709534, 0.704671, -0.00220186, 0.126151, -0.0716202)
+shape = SubResource("BoxShape3D_mts6r")

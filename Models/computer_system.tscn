@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://05bdwt6w3ow5"]
+
+[ext_resource type="PackedScene" uid="uid://io5k16sls8g4" path="res://space_station_glb/computer-system.glb" id="1_u2i8s"]
+[ext_resource type="Script" path="res://Models/dialog_interactor.gd" id="2_4kry3"]
+[ext_resource type="Script" path="res://Models/computer-system.gd" id="2_t3ebh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2q42d"]
+size = Vector3(0.820648, 0.603943, 0.571472)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0fxdl"]
+size = Vector3(0.33313, 0.476196, 0.549805)
+
+[node name="computer-system" instance=ExtResource("1_u2i8s")]
+script = ExtResource("2_t3ebh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="computer-system" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="computer-system/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00254822, 0.299469, -0.0378723)
+shape = SubResource("BoxShape3D_2q42d")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="computer-system" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431108, 0.140845)
+light_color = Color(1, 0.643137, 0, 1)
+light_energy = 0.385
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 1.769
+omni_range = 1.10069
+
+[node name="computer_system_collision" type="Area3D" parent="computer-system" index="2"]
+script = ExtResource("2_4kry3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="computer-system/computer_system_collision" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0200806, 0.3797, 0.225098)
+shape = SubResource("BoxShape3D_0fxdl")

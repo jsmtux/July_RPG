@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://fv6kqiod8gcn"]
+
+[ext_resource type="PackedScene" uid="uid://6vkhtj2a5bh" path="res://space_station_glb/wall-door-center.glb" id="1_o1jyw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_etd8a"]
+size = Vector3(1, 0.30011, 0.299927)
+
+[node name="wall-door-center" instance=ExtResource("1_o1jyw")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall-door-center" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall-door-center/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.848846, 0.000915527)
+shape = SubResource("BoxShape3D_etd8a")

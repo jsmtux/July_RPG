@@ -1,0 +1,148 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmghoe2d56v1q"]
+
+[ext_resource type="Script" path="res://UI/dialog_ui.gd" id="1_dc4gk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_721v6"]
+font_size = 33
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dc4gk")
+
+[node name="selection_panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_right = 500.0
+offset_bottom = 350.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="selection_panel"]
+visible = false
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 975.0
+offset_bottom = 75.0
+text = "This is shorter dialog"
+label_settings = SubResource("LabelSettings_721v6")
+autowrap_mode = 2
+
+[node name="selection1" type="Label" parent="selection_panel"]
+visible = false
+layout_mode = 0
+offset_left = 50.0
+offset_top = 85.0
+offset_right = 975.0
+offset_bottom = 135.0
+text = "This is option 1"
+label_settings = SubResource("LabelSettings_721v6")
+autowrap_mode = 2
+
+[node name="selection_icon1" type="Label" parent="selection_panel"]
+visible = false
+layout_mode = 0
+offset_left = 25.0
+offset_top = 85.0
+offset_right = 50.0
+offset_bottom = 135.0
+text = ">"
+label_settings = SubResource("LabelSettings_721v6")
+autowrap_mode = 2
+
+[node name="selection2" type="Label" parent="selection_panel"]
+visible = false
+layout_mode = 0
+offset_left = 50.0
+offset_top = 130.0
+offset_right = 975.0
+offset_bottom = 180.0
+text = "This is option 2"
+label_settings = SubResource("LabelSettings_721v6")
+autowrap_mode = 2
+
+[node name="selection_icon2" type="Label" parent="selection_panel"]
+visible = false
+layout_mode = 0
+offset_left = 25.0
+offset_top = 130.0
+offset_right = 50.0
+offset_bottom = 180.0
+text = ">"
+label_settings = SubResource("LabelSettings_721v6")
+autowrap_mode = 2
+
+[node name="selection3" type="Label" parent="selection_panel"]
+visible = false
+layout_mode = 0
+offset_left = 50.0
+offset_top = 175.0
+offset_right = 975.0
+offset_bottom = 225.0
+text = "This is option 3"
+label_settings = SubResource("LabelSettings_721v6")
+autowrap_mode = 2
+
+[node name="selection_icon3" type="Label" parent="selection_panel"]
+visible = false
+layout_mode = 0
+offset_left = 25.0
+offset_top = 175.0
+offset_right = 50.0
+offset_bottom = 225.0
+text = ">"
+label_settings = SubResource("LabelSettings_721v6")
+autowrap_mode = 2
+
+[node name="selection4" type="Label" parent="selection_panel"]
+visible = false
+layout_mode = 0
+offset_left = 50.0
+offset_top = 220.0
+offset_right = 975.0
+offset_bottom = 270.0
+text = "This is option 4"
+label_settings = SubResource("LabelSettings_721v6")
+autowrap_mode = 2
+
+[node name="selection_icon4" type="Label" parent="selection_panel"]
+visible = false
+layout_mode = 0
+offset_left = 25.0
+offset_top = 220.0
+offset_right = 50.0
+offset_bottom = 270.0
+text = ">"
+label_settings = SubResource("LabelSettings_721v6")
+autowrap_mode = 2
+
+[node name="text_panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_right = 500.0
+offset_bottom = 350.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="text_panel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 975.0
+offset_bottom = 325.0
+text = "This text box would contain dialog by a machine
+Or dialog by a character in the world the text would decide to wrap automatically
+It can display some special characters!@#$%^&()_"
+label_settings = SubResource("LabelSettings_721v6")
+autowrap_mode = 2

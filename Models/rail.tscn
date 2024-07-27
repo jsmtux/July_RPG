@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlntmtsg0dayr"]
+
+[ext_resource type="PackedScene" uid="uid://8inpui3he203" path="res://space_station_glb/rail.glb" id="1_thlff"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s4ro0"]
+size = Vector3(1, 0.401917, 0.101562)
+
+[node name="rail" instance=ExtResource("1_thlff")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rail" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rail/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200287, -0.000976562)
+shape = SubResource("BoxShape3D_s4ro0")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://53au0y3q2q5o"]
+
+[ext_resource type="PackedScene" uid="uid://cgjmoxvkhw587" path="res://space_station_glb/wall-door-edge.glb" id="1_s15u3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5g6ns"]
+size = Vector3(1, 0.302734, 0.300537)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tmc1c"]
+size = Vector3(0.201172, 0.765076, 0.299561)
+
+[node name="wall-door-edge2" instance=ExtResource("1_s15u3")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall-door-edge" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall-door-edge/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.850536, 0.000366211)
+shape = SubResource("BoxShape3D_5g6ns")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="wall-door-edge/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.399414, 0.38266, -0.00012207)
+shape = SubResource("BoxShape3D_tmc1c")

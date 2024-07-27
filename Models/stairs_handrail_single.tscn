@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://1gte40hgwrd0"]
+
+[ext_resource type="PackedScene" uid="uid://ds3tyfyobpob2" path="res://space_station_glb/stairs-handrail-single.glb" id="1_g7i73"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q5pef"]
+size = Vector3(0.101257, 0.562256, 1)
+
+[node name="stairs-handrail-single" instance=ExtResource("1_g7i73")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stairs-handrail-single" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stairs-handrail-single/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00125122, 0.28186, 0)
+shape = SubResource("BoxShape3D_q5pef")

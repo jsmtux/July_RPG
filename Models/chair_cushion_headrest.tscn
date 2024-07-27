@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi455xvnm3r8h"]
+
+[ext_resource type="PackedScene" uid="uid://b17bmgaut87pa" path="res://space_station_glb/chair-cushion-headrest.glb" id="1_tau4g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s1jap"]
+size = Vector3(0.299438, 0.700226, 0.35144)
+
+[node name="chair-cushion-headrest2" instance=ExtResource("1_tau4g")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="chair-cushion-headrest" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chair-cushion-headrest/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10352e-05, 0.350204, -0.000427246)
+shape = SubResource("BoxShape3D_s1jap")
